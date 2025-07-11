@@ -13,8 +13,10 @@ When what's needed is an atclone'' hook to e.g. install a software (plus atpull'
 # for the atclone'' and atpull'' hooks
 # run-atpull：Even if this repository has not been updated, atpull will still be executed during `zinit update weineel/zinit-rustup`.
 
+export RUSTUP_DIST_SERVER="https://rsproxy.cn"
+export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 zinit as"program" pick"rustup" \
-  atclone"curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh" \
+  atclone"curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh && source \"$HOME/.cargo/env\"" \
   atpull"rustup update" \
   run-atpull \
   for weineel/zinit-rustup
